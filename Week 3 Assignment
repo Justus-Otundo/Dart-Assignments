@@ -1,0 +1,118 @@
+// Encapsulation example
+
+class Person {
+  // Private variables
+  String _name;
+  int _age;
+
+  // Constructor
+  Person(this._name, this._age);
+
+  // Getter for name
+  String get name => _name;
+
+  // Setter for name
+  set name(String name) {
+    _name = name;
+  }
+
+  // Getter for age
+  int get age => _age;
+
+  // Setter for age
+  set age(int age) {
+    if (age > 0) {
+      _age = age;
+    }
+  }
+
+  // Method to display person details
+  void displayInfo() {
+    print('Name: $_name, Age: $_age');
+  }
+}
+
+void main() {
+  var person = Person('Alice', 30);
+  person.displayInfo();
+  
+  // Accessing and modifying data via getter and setter
+  person.name = 'Bob';
+  person.age = 25;
+  person.displayInfo();
+}
+// Inheritance example
+
+class Animal {
+  void makeSound() {
+    print('Some generic animal sound');
+  }
+}
+
+class Dog extends Animal {
+  @override
+  void makeSound() {
+    print('Bark');
+  }
+}
+
+void main() {
+  var myDog = Dog();
+  myDog.makeSound(); // Outputs: Bark
+}
+// Polymorphism example
+
+class Shape {
+  void draw() {
+    print('Drawing a shape');
+  }
+}
+
+class Circle extends Shape {
+  @override
+  void draw() {
+    print('Drawing a circle');
+  }
+}
+
+class Rectangle extends Shape {
+  @override
+  void draw() {
+    print('Drawing a rectangle');
+  }
+}
+
+void main() {
+  List<Shape> shapes = [Circle(), Rectangle()];
+
+  for (var shape in shapes) {
+    shape.draw();
+  }
+}
+// Abstraction example
+
+abstract class Shape {
+  void draw(); // Abstract method
+}
+
+class Circle extends Shape {
+  @override
+  void draw() {
+    print('Drawing a circle');
+  }
+}
+
+class Rectangle extends Shape {
+  @override
+  void draw() {
+    print('Drawing a rectangle');
+  }
+}
+
+void main() {
+  Shape myCircle = Circle();
+  Shape myRectangle = Rectangle();
+  
+  myCircle.draw(); // Outputs: Drawing a circle
+  myRectangle.draw(); // Outputs: Drawing a rectangle
+}
