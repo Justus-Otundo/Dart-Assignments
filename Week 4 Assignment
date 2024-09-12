@@ -1,0 +1,84 @@
+import 'dart:io';
+
+void main() {
+  // String Manipulation
+  String originalString = 'Hello Dart World!';
+  
+  // Concatenation
+  String concatenatedString = originalString + ' Enjoy programming!';
+  
+  // Interpolation
+  String interpolatedString = 'Original: $originalString';
+  
+  // Substring Extraction
+  String substring = originalString.substring(6, 10);
+  
+  // Case Conversion
+  String upperCaseString = originalString.toUpperCase();
+  String lowerCaseString = originalString.toLowerCase();
+  
+  // Reverse String
+  String reversedString = reverseString(originalString);
+  
+  // Count Length
+  int stringLength = originalString.length;
+
+  print('Concatenated String: $concatenatedString');
+  print('Interpolated String: $interpolatedString');
+  print('Substring: $substring');
+  print('Upper Case: $upperCaseString');
+  print('Lower Case: $lowerCaseString');
+  print('Reversed String: $reversedString');
+  print('String Length: $stringLength');
+  
+  // Collections
+  List<String> stringList = ['Hello', 'World', 'Dart'];
+  Set<String> stringSet = {'Hello', 'World', 'Dart'};
+  Map<String, int> stringMap = {'Hello': 1, 'World': 2, 'Dart': 3};
+  
+  // Adding items
+  stringList.add('Programming');
+  stringSet.add('Programming');
+  stringMap['Programming'] = 4;
+  
+  // Removing items
+  stringList.remove('World');
+  stringSet.remove('World');
+  stringMap.remove('World');
+  
+  // Iterating
+  print('List items: ${stringList.join(', ')}');
+  print('Set items: ${stringSet.join(', ')}');
+  print('Map items: ${stringMap.entries.map((e) => '${e.key}: ${e.value}').join(', ')}');
+  
+  // File Handling
+  String filePath = 'output.txt';
+  String logFilePath = 'log.txt';
+
+  try {
+    File file = File(filePath);
+    file.writeAsStringSync(concatenatedString);
+
+    File logFile = File(logFilePath);
+    logFile.writeAsStringSync('Entry logged at: ${DateTime.now()}\n', mode: FileMode.append);
+    
+    print('Data written to $filePath and log recorded in $logFilePath.');
+  } catch (e) {
+    print('Error handling file: $e');
+  }
+  
+  // Date and Time
+  DateTime now = DateTime.now();
+  DateTime futureDate = now.add(Duration(days: 10));
+  DateTime pastDate = now.subtract(Duration(days: 5));
+  
+  print('Current Date: $now');
+  print('Future Date (10 days later): $futureDate');
+  print('Past Date (5 days earlier): $pastDate');
+  print('Difference between two dates: ${futureDate.difference(pastDate).inDays} days');
+}
+
+// Function to reverse a string
+String reverseString(String str) {
+  return str.split('').reversed.join('');
+}
