@@ -1,0 +1,43 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Simple UI App',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Simple UI App'),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'Welcome to the App!',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 20), // Adds spacing between the text and button
+              ElevatedButton(
+                onPressed: () {
+                  print('Button clicked!');
+                },
+                child: Text('Click Me'),
+              ),
+              SizedBox(height: 20), // Adds spacing between the button and image
+              Image.network(
+                'https://example.com/your-image.jpg', // Replace with your image URL
+                width: 100, // Set the width of the image
+                height: 100, // Set the height of the image
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
