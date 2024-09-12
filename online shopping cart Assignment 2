@@ -1,0 +1,54 @@
+void main() {
+  // Sample list of item prices
+  List<double> itemPrices = [5.99, 12.49, 8.99, 15.99, 7.49];
+
+  // Function to calculate total price with optional tax
+  double calculateTotal(List<double> prices, [double taxRate = 0.0]) {
+    double total = prices.fold(0, (sum, price) => sum + price);
+    return total + (total * taxRate);
+  }
+
+  // Anonymous function to filter out items with price below $10
+  var filterExpensiveItems = (List<double> prices, double threshold) {
+    return prices.where((price) => price >= threshold).toList();
+  };
+
+  // Higher-Order Function to apply discount
+  double applyDiscount(List<double> prices, double Function(double) discountFunction) {
+    return prices.map((price) => price - discountFunction(price)).toList();
+  }
+
+  // Recursive function to calculate factorial
+  double calculateFactorialDiscount(int n) {
+    if (n <= 1) {
+      return 1;
+    } else {
+      return n * calculateFactorialDiscount(n - 1);
+    }
+  }
+
+  // Apply anonymous function to filter items
+  List<double> filteredItems = filterExpensiveItems(itemPrices, 10.0);
+
+  // Function to reduce price by a percentage
+  double discountFunction(double price) => price * 0.1; // 10% discount
+
+  // Apply discount to filtered items
+  List<double> discountedItems = applyDiscount(filteredItems, discountFunction);
+
+  // Calculate total price after discount
+  double totalPrice = calculateTotal(discountedItems, 0.07); // 7% tax
+
+  // Calculate special discount
+  double specialDiscount = calculateFactorialDiscount(filteredItems.length);
+
+  // Final price after applying special discount
+  double finalPrice = totalPrice - (totalPrice * specialDiscount / 100);
+
+  print('Item Prices: $itemPrices');
+  print('Filtered Items: $filteredItems');
+  print('Discounted Items: $discountedItems');
+  print('Total Price with Tax: \$${totalPrice.toStringAsFixed(2)}');
+  print('Special Discount: ${specialDiscount.toStringAsFixed(2)}%');
+  print('Final Price After Special Discount: \$${finalPrice.toStringAsFixed(2)}');
+}
